@@ -36,3 +36,25 @@ def home():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+requirements.txt
+flask
+
+
+Run locally:
+
+python app.py
+🐳 Step 2: Dockerize the Application
+Dockerfile
+FROM python:3.9
+WORKDIR /app
+COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
+CMD ["python", "app.py"]
+Build image:
+
+docker build -t trivy-python-app:v1 .
+
+
+Run container:
+
+docker run -p 5000:5000 trivy-python-app:v1
