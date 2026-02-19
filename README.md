@@ -43,7 +43,7 @@ flask
 Run locally:
 
 python app.py
-🐳 Step 2: Dockerize the Application
+##🐳 Step 2: Dockerize the Application
 Dockerfile
 FROM python:3.9
 WORKDIR /app
@@ -58,3 +58,19 @@ docker build -t trivy-python-app:v1 .
 Run container:
 
 docker run -p 5000:5000 trivy-python-app:v1
+
+##🔍 Step 3: Scan Docker Image Using Trivy (Manual Scan)
+Scan image:
+
+trivy image trivy-python-app:v1
+
+
+Generate JSON report:
+
+trivy image -f json -o trivy-report.json trivy-python-app:v1
+
+
+Generate table report:
+
+trivy image -f table -o trivy-report.txt trivy-python-app:v1
+
