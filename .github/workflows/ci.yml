@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
@@ -19,10 +19,10 @@ jobs:
       - name: Build Docker image
         run: docker build -t trivy-python-app:latest .
 
-      - name: Scan image with Trivy
+      - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: trivy-python-app:latest
-          format: table
-          exit-code: 1
-          severity: CRITICAL,HIGH
+          image-ref: 'trivy-python-app:latest'
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
